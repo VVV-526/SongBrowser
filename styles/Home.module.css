@@ -1,15 +1,9 @@
 .container {
   padding: 0 2rem;
-}
-
-.main {
-  min-height: 100vh;
-  padding: 4rem 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif
 }
 
 .footer {
@@ -19,6 +13,140 @@
   border-top: 1px solid #eaeaea;
   justify-content: center;
   align-items: center;
+}
+
+.navbar {
+  display: flex;
+  justify-content: flex-start;
+  background-color: #8ec1ce;
+  height:10vh;
+}
+
+.logo {
+  padding: 15px;
+  margin-left: 3%;
+}
+
+.logo span {
+  font-size: 25px;
+  color: #666e71;
+}
+
+.menu {
+  display: flex;
+}
+
+.menu ul {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin:0;
+}
+
+.menu li {
+  padding: 2em;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.menu li:hover {
+  background-color: rgb(255, 255, 255);
+  transition: 0.4s ease-out;
+}
+
+
+.menu a {
+  font-size: 21px;
+  transition: 0.3s ease-out;
+  color:#fafafa;
+  text-decoration: none;
+  letter-spacing: 0.1px;
+  vertical-align: middle;
+}
+
+.menu li:hover a {
+  color: #787878;
+}
+ 
+.menu li:active {
+  background-color: rgb(255, 255, 255);
+}
+
+.menu li:active a {
+  color: #5a5a5a;
+}
+
+.authen {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 1rem;
+  margin-left:60%;
+}
+
+.signText{
+  margin-right:1rem;
+  width: 5vw;
+  font-size: 15px;
+  transition: 0.3s ease-out;
+  text-decoration: none;
+  letter-spacing: 0.1px;
+  color:#ffffff;
+}
+
+.signText a:after {
+  content: "";
+  background-color: #ed9292;
+  height: 3px;
+  width: 0;
+  left: 0;
+  bottom: 10px;
+  transition: 0.3s;
+}
+
+.signText a:hover:after {
+  width: 100%;
+}
+
+.loginBtn{
+	padding: .55rem 0.65rem;
+  width:auto;
+	border-radius: 0.3rem;
+	color: rgb(255, 255, 255);
+  background: linear-gradient(
+    to right,
+    rgb(56, 143, 164) 50%,
+    #f4f4f4 50%,
+    #fcfcfc 
+  );
+  background-clip:border-box;
+  background-size: 200%;
+	font-size: 16px;
+	transition: all 0.3s;
+	overflow: hidden;
+  height:5vh;
+  width: 6vw;
+  margin-right:1%;
+  border:0;
+	text-align: center;
+	cursor: pointer;
+  font-weight:bold;
+  box-shadow: 1px 1px 1px #afafaf;
+}
+
+.loginBtn:hover{
+  color: rgb(148, 148, 148);
+  transition: all 0.3s;
+  font-weight:bold;
+  letter-spacing: 0.05rem;
+  background-position: -100%;
+}
+
+.content{
+  color:#ffffff;
+  height:100vh;
 }
 
 .footer a {
@@ -61,8 +189,7 @@
   border-radius: 5px;
   padding: 0.75rem;
   font-size: 1.1rem;
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .grid {
@@ -103,10 +230,6 @@
   line-height: 1.5;
 }
 
-.logo {
-  height: 1em;
-  margin-left: 0.5rem;
-}
 
 @media (max-width: 600px) {
   .grid {
