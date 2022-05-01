@@ -43,12 +43,12 @@
   list-style: none;
   padding: 0;
   margin:0;
+  cursor:pointer;
 }
 
 .menu li {
   padding: 2em;
   vertical-align: middle;
-  cursor: pointer;
 }
 
 .menu li:hover {
@@ -96,9 +96,9 @@
   color:#ffffff;
 }
 
-.signText a:after {
+.signText:after {
   content: "";
-  background-color: #ed9292;
+  background-color: #ffffff;
   height: 3px;
   width: 0;
   left: 0;
@@ -106,7 +106,7 @@
   transition: 0.3s;
 }
 
-.signText a:hover:after {
+.signText:hover:after {
   width: 100%;
 }
 
@@ -173,31 +173,12 @@
   font-size: 4rem;
 }
 
-.title,
-.description {
-  text-align: center;
-}
-
-.description {
-  margin: 4rem 0;
-  line-height: 1.5;
-  font-size: 1.5rem;
-}
-
-.code {
-  background: #fafafa;
-  border-radius: 5px;
-  padding: 0.75rem;
-  font-size: 1.1rem;
-  font-family: 'Montserrat', sans-serif;
-}
-
 .grid {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  max-width: 800px;
+  padding:3rem;
 }
 
 .card {
@@ -209,14 +190,16 @@
   border: 1px solid #eaeaea;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 300px;
+  max-width: 30%;
+  height: 30vh;
+  color:#5a5a5a;
 }
 
 .card:hover,
 .card:focus,
 .card:active {
-  color: #0070f3;
-  border-color: #0070f3;
+  color: rgb(58, 175, 205);
+  border-color: rgb(69, 189, 220);
 }
 
 .card h2 {
