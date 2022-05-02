@@ -11,7 +11,7 @@ const HomePage = () => {
       <Search></Search>
       <div className={styles.grid}>
         <a href="/" className={styles.card}>
-          <h2>New Peleases &rarr;</h2>
+          <h2>New Releases &rarr;</h2>
           <p>This is a paragraph to be filled in the future.</p>
         </a>
 
