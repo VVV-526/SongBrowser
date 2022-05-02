@@ -23,12 +23,13 @@ const navData: NavLinkData[] = [
   }
 ];
 
+let activeLink = 1;
+
 const NavLink = ({ id, name, path }: NavLinkData) => {
-  const [activeLink, setLink] = useState(0);
   return (
       <Link href={path} passHref>
         <ul>
-          <li onClick={() => setLink(activeLink => activeLink = id)} className={id === activeLink ? " active" : ""}>
+          <li onClick={() => activeLink = id} className={activeLink === id ? styles.clicked : ""}>
             <a><span>{name}</span></a>
           </li>
         </ul>
