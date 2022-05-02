@@ -147,7 +147,7 @@
 }
 
 .content{
-  color:#ffffff;
+  min-height: 75vh;
 }
 
 .footer a {

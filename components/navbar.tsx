@@ -24,7 +24,6 @@ const navData: NavLinkData[] = [
 ];
 
 const NavLink = ({ id, name, path }: NavLinkData) => {
-  const { pathname: currentPath } = useRouter()
   const [activeLink, setLink] = useState(0);
   return (
       <Link href={path} passHref>
