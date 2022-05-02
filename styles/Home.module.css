@@ -56,6 +56,17 @@
   transition: 0.4s ease-out;
 }
 
+.menu li:hover a {
+  color: #787878;
+}
+
+.menu li:active {
+  background-color: rgb(255, 255, 255);
+}
+
+.menu li:active a {
+  color: #5a5a5a;
+}
 
 .menu a {
   font-size: 21px;
@@ -64,18 +75,6 @@
   text-decoration: none;
   letter-spacing: 0.1px;
   vertical-align: middle;
-}
-
-.menu li:hover a {
-  color: #787878;
-}
- 
-.menu li:active {
-  background-color: rgb(255, 255, 255);
-}
-
-.menu li:active a {
-  color: #5a5a5a;
 }
 
 .authen {
@@ -177,7 +176,7 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  padding:3rem;
+  padding:1rem;
 }
 
 .card {

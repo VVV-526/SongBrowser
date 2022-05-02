@@ -1,37 +1,42 @@
-import React from "react"
+import React, { useState } from "react"
 import NextLink from "next/link"
 import { useRouter } from "next/router"
 import styles from '../styles/Home.module.css'
 import Link from "next/link"
 
 type NavLinkData = {
+  id: number
   name: string
   path: string
 }
 
 const navData: NavLinkData[] = [
   {
+    id: 1,
     name: "Home",
     path: "/"
   },
   {
+    id: 2,
     name: "Playlist",
     path: "/playlist",
   }
 ];
 
-const NavLink = ({ name, path }: NavLinkData) => {
+const NavLink = ({ id, name, path }: NavLinkData) => {
   const { pathname: currentPath } = useRouter()
+  const [activeLink, setLink] = useState(0);
   return (
       <Link href={path} passHref>
         <ul>
-          <li>
+          <li onClick={() => setLink(activeLink => activeLink = id)} className={id === activeLink ? " active" : ""}>
             <a><span>{name}</span></a>
           </li>
         </ul>
       </Link>
   )
 }
+
 
 const Navbar = () => {
   return (

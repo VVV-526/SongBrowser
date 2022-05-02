@@ -2,11 +2,13 @@ import { useRouter } from "next/router";
 import React, { ReactNode } from "react"
 import Layout from "../components/layout"
 import styles from "../styles/Home.module.css"
+import Search from "../components/search"
 
 const HomePage = () => {
   const router = useRouter();
   return (
     <Layout title="Home">
+      <Search></Search>
       <div className={styles.grid}>
         <a href="/" className={styles.card}>
           <h2>New Peleases &rarr;</h2>
