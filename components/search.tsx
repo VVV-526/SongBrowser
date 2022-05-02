@@ -1,5 +1,4 @@
 import React from "react"
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row, Form, Col, Button } from 'react-bootstrap';
 import { useRouter } from "next/router";
 
@@ -15,7 +14,7 @@ const Search = () => {
                     <Form.Control id="inlineFormInputName" placeholder="Miley Cyrus" />
                 </Col>
                 <Col xs="auto" className="my-1">
-                    <Button variant="warning" onClick={() => router.push('/filterlist')}>Search</Button>
+                    <Button variant="secondary" onClick={() => router.push('/filterlist')}>Search</Button>
                 </Col>
             </Row>
         </Form>

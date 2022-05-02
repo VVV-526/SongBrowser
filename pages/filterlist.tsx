@@ -1,16 +1,17 @@
 import Layout from "../components/layout"
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Search from "../components/search"
 import Heading from "../components/heading"
-import { Row, Col, Button} from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
+import { useRouter } from "next/router";
 
 const FilterPage = () => {
+  const router = useRouter();
   return (
     <Layout title="Filterlist">
       <Search></Search>
       <Heading></Heading>
       <Row className='mt-3 justify-content-center text-center'>
-        <Col sm={4}>Malibu</Col>
+        <Col sm={4} ><span onClick={() => router.push('/preview')}>Malibu</span></Col>
         <Col sm={4}>Miley Cyrus</Col>
         <Col sm={4}>Younger Now</Col>
       </Row>
