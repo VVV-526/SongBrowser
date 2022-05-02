@@ -1,0 +1,11 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+$theme-colors: ('primary': #8ec1ce,
+    'secondary': rgb(244, 213, 193),
+    'dark':rgb(173, 159, 160));
+
+
+
+@import "bootstrap";
