@@ -71,11 +71,13 @@
 
 .menu a {
   font-size: 21px;
-  transition: 0.3s ease-out;
-  color:#fafafa;
   text-decoration: none;
   letter-spacing: 0.1px;
   vertical-align: middle;
+}
+
+.menu span:hover {
+  color:#787878;
 }
 
 .authen {
