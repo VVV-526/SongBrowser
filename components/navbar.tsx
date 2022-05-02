@@ -26,10 +26,11 @@ const navData: NavLinkData[] = [
 let activeLink = 1;
 
 const NavLink = ({ id, name, path }: NavLinkData) => {
+  const { pathname: currentPath } = useRouter()
   return (
       <Link href={path} passHref>
         <ul>
-          <li onClick={() => activeLink = id} className={activeLink === id ? styles.clicked : ""}>
+          <li onClick={() => activeLink = id} className={activeLink === id && currentPath === path ? styles.clicked : ""}>
             <a><span>{name}</span></a>
           </li>
         </ul>
