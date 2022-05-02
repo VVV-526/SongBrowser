@@ -2,7 +2,7 @@ import Layout from "../components/layout"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Search from "../components/search"
 import Heading from "../components/heading"
-import { Row, Col, Button, } from 'react-bootstrap';
+import { Row, Col, Button} from 'react-bootstrap';
 
 const FilterPage = () => {
   return (
