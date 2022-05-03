@@ -13,6 +13,8 @@ const HomePage = () => {
         <a href="/" className={styles.card}>
           <h2>New Releases &rarr;</h2>
           <p>This is a paragraph to be filled in the future.</p>
+          <img></img>hi
+          
         </a>
 
         <a href="/" className={styles.card}>

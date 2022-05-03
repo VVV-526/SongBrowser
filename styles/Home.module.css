@@ -61,11 +61,8 @@
   color: #787878;
 }
 
-.menu li:active {
+.menu li.clicked {
   background-color: rgb(255, 255, 255);
-}
-
-.menu li:active a {
   color: #5a5a5a;
 }
 
@@ -144,8 +141,8 @@
   background-position: -100%;
 }
 
-.content {
-  min-height: 75vh;
+.content{
+min-height: 75vh;
 }
 
 .footer a {
