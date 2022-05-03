@@ -1,6 +1,7 @@
 import React from "react"
 import { Row, Form, Col, Button } from 'react-bootstrap';
 import { useRouter } from "next/router";
+import styles from "../styles/Home.module.css"
 
 const Search = () => {
     const router = useRouter();
@@ -14,7 +15,7 @@ const Search = () => {
                     <Form.Control id="inlineFormInputName" placeholder="Miley Cyrus" />
                 </Col>
                 <Col xs="auto" className="my-1">
-                    <Button variant="secondary" onClick={() => router.push('/filterlist')}>Search</Button>
+                    <Button variant="secondary" className={styles.searchButton} onClick={() => router.push('/filterlist')}>Search</Button>
                 </Col>
             </Row>
         </Form>
