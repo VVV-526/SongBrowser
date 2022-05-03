@@ -3,9 +3,9 @@
 @import "~bootstrap/scss/mixins";
 
 $theme-colors: ('primary': #8ec1ce,
-    'secondary': rgb(244, 213, 193),
-    'dark':rgb(173, 159, 160));
-
+    'secondary': rgb(56, 143, 164),
+    'dark':rgb(173, 159, 160),
+    'success': black);
 
 
 @import "bootstrap";

@@ -1,5 +1,6 @@
 import Layout from "../components/layout"
 import { Card, Button, Container, Row, Col } from 'react-bootstrap';
+import styles from "../styles/Home.module.css"
 
 const PreviewPage = () => {
   return (
@@ -15,7 +16,7 @@ const PreviewPage = () => {
                 <Card.Text>
                   Miley Cyrus
                 </Card.Text>
-                <Button variant="secondary" size="sm">Add to playlist</Button>
+                <Button variant="secondary" className={styles.searchButton} size="sm">Add to playlist</Button>
               </Card.Body>
             </Card>
           </Col>
