@@ -13,7 +13,7 @@ Enter the directory and run the development server:
 yarn dev
 ```
 
-We are using bootstrap UI toolkit and self-defined styles.
+We are using bootstrap UI toolkit, MUI toolkit and self-defined styles.
 
 Open [http://localhost:3000](http://localhost:3000) to see the result.
 

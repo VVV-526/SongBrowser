@@ -26,10 +26,7 @@ const Layout= ({children, title}:Props) => {
         </div>
   
         <footer className={styles.footer}>
-          Developed by{' '}
-          <span className={styles.logo}>
-            Group xx
-          </span>
+          <a href="#">Contact us</a>
         </footer>
       </div >
     )

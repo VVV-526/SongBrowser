@@ -212,6 +212,7 @@
 
 .playlist{
   padding: 2rem;
+  min-width: 35rem;
 }
 
 @media (max-width: 600px) {
