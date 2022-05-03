@@ -214,6 +214,23 @@
   padding: 2rem;
 }
 
+.searchButton:hover {
+  background-color: rgb(172, 211, 243);
+  border-color: rgb(172, 211, 243);
+  color: #444242;
+}
+
+.songName {
+  border-color: white;
+}
+
+.songName:hover {
+  color: rgb(58, 175, 205);
+  background-color: white;
+  border-color: white;
+  text-shadow: 5px 5px 5px #e3e3e3;
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;
