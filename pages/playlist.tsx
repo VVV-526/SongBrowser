@@ -2,15 +2,13 @@ import React, { ReactNode } from "react"
 import Layout from "../components/layout"
 import styles from "../styles/Home.module.css"
 import { List, ListItem, ListItemButton, ListItemAvatar, ListItemText, Avatar, ListSubheader, Divider, Card, CardContent, Typography } from "@mui/material"
-import DeleteIcon from '@mui/icons-material/Delete';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 import AddBoxIcon from '@mui/icons-material/AddBox';
-//import PlaylistCard from "../components/playlistCard"
+import PlaylistCard from "../components/playlistCard"
 
 type playlistType = {
   playlistID: number,
   playlistName: string,
-  songs: [songType, songType, songType];
+  songs: songType[]
 }
 
 type songType = {
@@ -101,61 +99,9 @@ const Playlist = () => {
   return (
     <Layout title="Playlist">
       <div className={styles.grid}>
-        {playlistData.map((item) => {
+        {playlistData.map((data) => {
           return (
-            <div className={styles.playlist}>
-              <Card sx={{ display: 'flex' }}>
-                <CardContent sx={{ flex: '1 0 auto' }}>
-                  <Typography component="div" variant="h5">
-                    {item.playlistName}
-                  </Typography>
-                  <Typography variant="subtitle1" color="text.secondary" component="div">
-                    {"Playlist " + item.playlistID}
-                  </Typography>
-                </CardContent>
-                <List dense sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-                  subheader={
-                    <ListSubheader component="div" id="nested-list-subheader">
-                      {"My favorite"}
-                    </ListSubheader>
-                  }>
-                  {item.songs.map((value) => {
-                    const labelId = `checkbox-list-secondary-label-${value.id}`;
-                    return (
-                      <ListItem
-                        key={value.id}
-                        secondaryAction={
-                          <DeleteIcon fontSize="small">
-                          </DeleteIcon>
-                        }
-                      >
-                        <ListItemButton>
-                          <ListItemAvatar>
-                            <Avatar
-                              alt={`Avatar n°${value.id + 1}`}
-                              src={`img/${value.title}.png`}
-                            />
-                          </ListItemAvatar>
-                          <ListItemText id={labelId} primary={`${value.title}`} />
-                        </ListItemButton>
-                      </ListItem>
-                    );
-                  })}
-                  <Divider />
-                  <nav aria-label="secondary mailbox folders">
-                    <List>
-                      <ListItem disablePadding>
-                        <ListItemButton>
-                          <ListItemText primary="More >>" />
-                          <AddCircleIcon fontSize="small">
-                          </AddCircleIcon>
-                        </ListItemButton>
-                      </ListItem>
-                    </List>
-                  </nav>
-                </List>
-              </Card>
-            </div>
+            <PlaylistCard key={data.playlistID} {...data}></PlaylistCard>
           )
         })}
         <div className={styles.playlist}>
