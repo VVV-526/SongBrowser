@@ -14,7 +14,7 @@ The project is a [Next.js](https://nextjs.org/) project bootstrapped with [`crea
 [https://github.com/VVV-526/SongBrowser]
 
 ## Firebase Link
-[https://console.firebase.google.com/u/0/project/song-browser/overview] (https://console.firebase.google.com/u/0/project/song-browser/overview)
+[https://console.firebase.google.com/u/0/project/song-browser/overview]
 
 ## Getting Started
 Pull the project and run 
