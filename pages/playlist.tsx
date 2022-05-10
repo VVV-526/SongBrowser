@@ -9,117 +9,118 @@ import { collection, getDocs, onSnapshot, query } from "firebase/firestore"
 import { db } from "./firebase"
 
 type playlistType = {
-  playlistID: number,
-  playlistName: string,
+  pid: number,
+  playlist_name: string,
   songs: songType[]
+
 }
 
 type songType = {
-  id: number,
-  title: string,
-  album: string,
-  artist: string
+  sid: number,
+  song_name: string,
+  album_name: string,
+  artist_name: string
 }
 
-const playlistData: playlistType[] = [
-  {
-    playlistID: 1,
-    playlistName: "Miley's songs",
-    songs: [
-      {
-        id: 1,
-        title: "Malibu",
-        album: "Younger Now",
-        artist: "Miley Cyrus",
-      },
-      {
-        id: 2,
-        title: "Party In The USA",
-        album: "Party In The U.S.A - Single",
-        artist: "Miley Cyrus",
-      },
-      {
-        id: 3,
-        title: "The Climb",
-        album: "Party In The U.S.A - Single",
-        artist: "Hannah Montana",
-      }
-    ]
-  },
-  {
-    playlistID: 2,
-    playlistName: "Recent favorites",
-    songs: [
-      {
-        id: 1,
-        title: "Red",
-        album: "Red",
-        artist: "Taylor Swift",
-      },
-      {
-        id: 2,
-        title: "Enemy",
-        album: "Enemy",
-        artist: "Imagine Dragons with JID",
-      },
-      {
-        id: 3,
-        title: "Out of the Woods",
-        album: "1989",
-        artist: "Taylor Swift",
-      }
-    ]
-  },
-  {
-    playlistID: 3,
-    playlistName: "Rock Songs Mix",
-    songs: [
-      {
-        id: 1,
-        title: "Hotel California",
-        album: "Hotel California",
-        artist: "Eagles",
-      },
-      {
-        id: 2,
-        title: "Hey Jude",
-        album: "Hey Jude",
-        artist: "Beatles",
-      },
-      {
-        id: 3,
-        title: "Born to Run",
-        album: "Born to Run",
-        artist: "Bruce Springteen",
-      }
-    ]
-  }
-];
+// const playlistData: playlistType[] = [
+//   {
+//     pid: 1,
+//     playlistName: "Miley's songs",
+//     songs: [
+//       {
+//         id: 1,
+//         title: "Malibu",
+//         album: "Younger Now",
+//         artist: "Miley Cyrus",
+//       },
+//       {
+//         id: 2,
+//         title: "Party In The USA",
+//         album: "Party In The U.S.A - Single",
+//         artist: "Miley Cyrus",
+//       },
+//       {
+//         id: 3,
+//         title: "The Climb",
+//         album: "Party In The U.S.A - Single",
+//         artist: "Hannah Montana",
+//       }
+//     ]
+//   },
+//   {
+//     playlistID: 2,
+//     playlistName: "Recent favorites",
+//     songs: [
+//       {
+//         id: 1,
+//         title: "Red",
+//         album: "Red",
+//         artist: "Taylor Swift",
+//       },
+//       {
+//         id: 2,
+//         title: "Enemy",
+//         album: "Enemy",
+//         artist: "Imagine Dragons with JID",
+//       },
+//       {
+//         id: 3,
+//         title: "Out of the Woods",
+//         album: "1989",
+//         artist: "Taylor Swift",
+//       }
+//     ]
+//   },
+//   {
+//     playlistID: 3,
+//     playlistName: "Rock Songs Mix",
+//     songs: [
+//       {
+//         id: 1,
+//         title: "Hotel California",
+//         album: "Hotel California",
+//         artist: "Eagles",
+//       },
+//       {
+//         id: 2,
+//         title: "Hey Jude",
+//         album: "Hey Jude",
+//         artist: "Beatles",
+//       },
+//       {
+//         id: 3,
+//         title: "Born to Run",
+//         album: "Born to Run",
+//         artist: "Bruce Springteen",
+//       }
+//     ]
+//   }
+// ];
 
 const playlistCollectionRef = collection(db, 'playlists');
 const playlistQuery = query(playlistCollectionRef);
 
 const Playlist = () => {
-  // console.log(playlistQuery);
-  // // const [playlists, setTasks] = useState<playlistType[]>(null)
-  // // useEffect(() => {
-  // //   const unsubscribe = onSnapshot(playlistQuery, (querySnapshot) => {
-  // //     const plData:playlistType[] = querySnapshot.docs.map((doc) => ({...doc.data()} as playlistType));
-  // //     setTasks(plData);
-  // //   })
-  // //   return unsubscribe
-  // // }, [])
+  console.log(playlistQuery);
+  const [playlists, setTasks] = useState<playlistType[]>([])
+  useEffect(() => {
+    const unsubscribe = onSnapshot(playlistQuery, (querySnapshot) => {
+      const plData:playlistType[] = querySnapshot.docs.map((doc) => ({...doc.data()} as playlistType));
+      setTasks(plData);
+    })
+    return unsubscribe
+  }, [])
 
-  // // console.log(playlists);
+  console.log(playlists);
 
   return (
     <Layout title="Playlist">
       {/* <div className={plstyle.bottomContent}>
         <div className={plstyle.sidebar}>myplaylist</div> */}
       <div className={styles.grid}>
-        {playlistData.map((data) => {
+        {playlists.map((data) => {
           return (
-            <PlaylistCard key={data.playlistID} {...data}></PlaylistCard>
+            <PlaylistCard key={data.pid} {...data}></PlaylistCard>
           )
         })}
         <div className={styles.playlist}>
