@@ -4,6 +4,7 @@ import styles from "../styles/Home.module.css"
 import { List, ListItem, ListItemButton, ListItemAvatar, ListItemText, Avatar, ListSubheader, Divider, Card, CardContent, Typography } from "@mui/material"
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import PlaylistCard from "../components/playlistCard"
+// import plstyle from "../styles/Playlist.module.css"
 
 type playlistType = {
   playlistID: number,
@@ -98,33 +99,36 @@ const Playlist = () => {
 
   return (
     <Layout title="Playlist">
-      <div className={styles.grid}>
-        {playlistData.map((data) => {
-          return (
-            <PlaylistCard key={data.playlistID} {...data}></PlaylistCard>
-          )
-        })}
-        <div className={styles.playlist}>
-          <Card sx={{ display: 'flex' }}>
-            <CardContent sx={{ flex: '1 0 auto' }}>
-              <Typography component="div" variant="h5">
-                {"Create more lists!"}
-              </Typography>
-              <Typography variant="subtitle1" color="text.secondary" component="div">
-                {"Playlist"}
-              </Typography>
-            </CardContent>
-            <ListItem>
-              <ListItemButton>
-                <ListItemAvatar>
-                  <AddBoxIcon fontSize="large"></AddBoxIcon>
-                </ListItemAvatar>
-                <ListItemText primary={`add songs`} />
-              </ListItemButton>
-            </ListItem>
-          </Card>
+      {/* <div className={plstyle.bottomContent}>
+        <div className={plstyle.sidebar}>myplaylist</div> */}
+        <div className={styles.grid}>
+          {playlistData.map((data) => {
+            return (
+              <PlaylistCard key={data.playlistID} {...data}></PlaylistCard>
+            )
+          })}
+          <div className={styles.playlist}>
+            <Card sx={{ display: 'flex' }}>
+              <CardContent sx={{ flex: '1 0 auto' }}>
+                <Typography component="div" variant="h5">
+                  {"Create more lists!"}
+                </Typography>
+                <Typography variant="subtitle1" color="text.secondary" component="div">
+                  {"Playlist"}
+                </Typography>
+              </CardContent>
+              <ListItem>
+                <ListItemButton>
+                  <ListItemAvatar>
+                    <AddBoxIcon fontSize="large"></AddBoxIcon>
+                  </ListItemAvatar>
+                  <ListItemText primary={`add songs`} />
+                </ListItemButton>
+              </ListItem>
+            </Card>
+          </div>
         </div>
-      </div>
+      {/* </div> */}
     </Layout>
   )
 }

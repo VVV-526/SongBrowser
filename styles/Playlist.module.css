@@ -1,0 +1,13 @@
+.bottomContent {
+    position:relative;
+    flex-flow:column wrap;
+    display: flex;
+    flex-wrap: wrap;
+    padding:2rem;
+}
+
+.sidebar {
+    height: 80vh;
+    background-color: #e2e6e8;
+    width: 10%;
+}
