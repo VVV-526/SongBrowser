@@ -11,7 +11,7 @@ The project is a [Next.js](https://nextjs.org/) project bootstrapped with [`crea
 - Anni Zhang, az543 
 
 ## Github Repository Link
-[https://github.com/VVV-526/SongBrowser](https://github.com/VVV-526/SongBrowser)
+[https://github.com/VVV-526/SongBrowser] (https://github.com/VVV-526/SongBrowser)
 
 ## Firebase Link
 [https://console.firebase.google.com/u/0/project/song-browser/overview] (https://console.firebase.google.com/u/0/project/song-browser/overview)
