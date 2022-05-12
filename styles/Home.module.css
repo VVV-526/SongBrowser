@@ -141,7 +141,7 @@
   background-position: -100%;
 }
 
-.content{
+.content {
   min-height: 75vh;
 }
 
@@ -210,12 +210,13 @@
   line-height: 1.5;
 }
 
-.playlist{
+.playlist {
   padding: 2rem;
   min-width: 35rem;
 }
+
 .searchButton {
-  color:#ffffff;
+  color: #ffffff;
 }
 
 .searchButton:hover {
@@ -233,6 +234,10 @@
   background-color: white;
   border-color: white;
   text-shadow: 5px 5px 5px #e3e3e3;
+}
+
+.noSongFound {
+  background-color: white;
 }
 
 @media (max-width: 600px) {
