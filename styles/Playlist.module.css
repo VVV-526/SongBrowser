@@ -7,7 +7,33 @@
 }
 
 .sidebar {
-    height: 80vh;
+    height: 100vh;
     background-color: #e2e6e8;
-    width: 10%;
+    width: 12%;
+    position:sticky;
+}
+
+.closebutton {
+    background-color:rgb(70, 70, 70);
+    position: sticky;
+    width: 1.5rem;
+    left: 100%;
+    color:white;
+}
+
+.topBtn{
+    position:fixed;
+    bottom:50%;
+    left:0%;
+    margin-top:1rem;
+}
+
+.addPlaylistBtn{
+    background-color: rgb(106, 185, 204);
+    padding:1rem;
+    font-weight: bold;
+}
+
+.addPlaylistBtn:hover{
+    background-color: rgb(173, 217, 228);
 }

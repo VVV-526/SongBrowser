@@ -171,10 +171,9 @@
 
 .grid {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items:center;
+  justify-content:center;
   flex-wrap: wrap;
-  padding: 1rem;
 }
 
 .card {

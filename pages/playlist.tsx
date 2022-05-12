@@ -4,14 +4,18 @@ import styles from "../styles/Home.module.css"
 import { List, ListItem, ListItemButton, ListItemAvatar, ListItemText, Avatar, ListSubheader, Divider, Card, CardContent, Typography } from "@mui/material"
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import PlaylistCard from "../components/playlistCard"
-// import plstyle from "../styles/Playlist.module.css"
+import AddPlaylistButton from "../components/addPlaylist"
 import { collection, getDocs, onSnapshot, query } from "firebase/firestore"
 import { db } from "./firebase"
+import CloseIcon from '@mui/icons-material/Close';
+import plstyles from "../styles/Playlist.module.css"
+import { Add } from "@mui/icons-material";
 
 type playlistType = {
   pid: number,
   playlist_name: string,
   songs: songType[]
+  des: string
 
 }
 
@@ -22,90 +26,16 @@ type songType = {
   artist_name: string
 }
 
-// const playlistData: playlistType[] = [
-//   {
-//     pid: 1,
-//     playlistName: "Miley's songs",
-//     songs: [
-//       {
-//         id: 1,
-//         title: "Malibu",
-//         album: "Younger Now",
-//         artist: "Miley Cyrus",
-//       },
-//       {
-//         id: 2,
-//         title: "Party In The USA",
-//         album: "Party In The U.S.A - Single",
-//         artist: "Miley Cyrus",
-//       },
-//       {
-//         id: 3,
-//         title: "The Climb",
-//         album: "Party In The U.S.A - Single",
-//         artist: "Hannah Montana",
-//       }
-//     ]
-//   },
-//   {
-//     playlistID: 2,
-//     playlistName: "Recent favorites",
-//     songs: [
-//       {
-//         id: 1,
-//         title: "Red",
-//         album: "Red",
-//         artist: "Taylor Swift",
-//       },
-//       {
-//         id: 2,
-//         title: "Enemy",
-//         album: "Enemy",
-//         artist: "Imagine Dragons with JID",
-//       },
-//       {
-//         id: 3,
-//         title: "Out of the Woods",
-//         album: "1989",
-//         artist: "Taylor Swift",
-//       }
-//     ]
-//   },
-//   {
-//     playlistID: 3,
-//     playlistName: "Rock Songs Mix",
-//     songs: [
-//       {
-//         id: 1,
-//         title: "Hotel California",
-//         album: "Hotel California",
-//         artist: "Eagles",
-//       },
-//       {
-//         id: 2,
-//         title: "Hey Jude",
-//         album: "Hey Jude",
-//         artist: "Beatles",
-//       },
-//       {
-//         id: 3,
-//         title: "Born to Run",
-//         album: "Born to Run",
-//         artist: "Bruce Springteen",
-//       }
-//     ]
-//   }
-// ];
 
 const playlistCollectionRef = collection(db, 'playlists');
 const playlistQuery = query(playlistCollectionRef);
 
 const Playlist = () => {
   console.log(playlistQuery);
-  const [playlists, setTasks] = useState<playlistType[]>([])
+  const [playlists, setTasks] = useState<playlistType[]>([]);
   useEffect(() => {
     const unsubscribe = onSnapshot(playlistQuery, (querySnapshot) => {
-      const plData:playlistType[] = querySnapshot.docs.map((doc) => ({...doc.data()} as playlistType));
+      const plData: playlistType[] = querySnapshot.docs.map((doc) => ({ ...doc.data() } as playlistType));
       setTasks(plData);
     })
     return unsubscribe
@@ -115,36 +45,14 @@ const Playlist = () => {
 
   return (
     <Layout title="Playlist">
-      {/* <div className={plstyle.bottomContent}>
-        <div className={plstyle.sidebar}>myplaylist</div> */}
       <div className={styles.grid}>
         {playlists.map((data) => {
           return (
             <PlaylistCard key={data.pid} {...data}></PlaylistCard>
           )
         })}
-        <div className={styles.playlist}>
-          <Card sx={{ display: 'flex' }}>
-            <CardContent sx={{ flex: '1 0 auto' }}>
-              <Typography component="div" variant="h5">
-                {"Create more lists!"}
-              </Typography>
-              <Typography variant="subtitle1" color="text.secondary" component="div">
-                {"Playlist"}
-              </Typography>
-            </CardContent>
-            <ListItem>
-              <ListItemButton>
-                <ListItemAvatar>
-                  <AddBoxIcon fontSize="large"></AddBoxIcon>
-                </ListItemAvatar>
-                <ListItemText primary={`add songs`} />
-              </ListItemButton>
-            </ListItem>
-          </Card>
-        </div>
       </div>
-      {/* </div> */}
+      <AddPlaylistButton></AddPlaylistButton>
     </Layout>
   )
 }

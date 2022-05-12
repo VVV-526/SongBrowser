@@ -1,14 +1,17 @@
-import React, { ReactNode } from "react"
+import React, { ReactNode, useEffect, useState } from "react"
 import styles from "../styles/Home.module.css"
 import { List, ListItem, ListItemButton, ListItemAvatar, ListItemText, Avatar, ListSubheader, Divider, Card, CardContent, Typography } from "@mui/material"
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import CloseIcon from '@mui/icons-material/Close';
+import plstyles from "../styles/Playlist.module.css"
+import {getStorage, ref, getDownloadURL} from "firebase/storage"
 
 type playlistType = {
     pid: number,
     playlist_name: string,
     songs: songType[]
-
+    des: string
 }
 
 type songType = {
@@ -20,7 +23,7 @@ type songType = {
 
 
 
-const playlistCard = ({pid, playlist_name, songs} : playlistType) => {
+const playlistCard = ({pid, playlist_name, des, songs} : playlistType) => {
     return (
         <div className={styles.playlist}>
         <Card sx={{ display: 'flex' }}>
@@ -29,17 +32,29 @@ const playlistCard = ({pid, playlist_name, songs} : playlistType) => {
               {playlist_name}
             </Typography>
             <Typography variant="subtitle1" color="text.secondary" component="div">
-              {"Playlist " + pid}
+              {des}
             </Typography>
           </CardContent>
           <List dense sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
             subheader={
               <ListSubheader component="div" id="nested-list-subheader">
                 {"My favorite"}
+                <CloseIcon className={plstyles.closebutton} ></CloseIcon>
               </ListSubheader>
             }>
             {songs.map((value) => {
               const labelId = `checkbox-list-secondary-label-${value.sid}`;
+              const [url, setUrl] = useState("");
+              useEffect(() => {
+                const func = async () => {
+                  const storage = getStorage();
+                  const ImgRef = ref(storage, `img/${value.album_name}.png`);
+                  const url = await getDownloadURL(ImgRef);
+                  setUrl(url);
+                  console.log(url)
+                }
+                func();
+              }, []);
               return (
                 <ListItem
                   key={value.sid}
@@ -52,7 +67,7 @@ const playlistCard = ({pid, playlist_name, songs} : playlistType) => {
                     <ListItemAvatar>
                       <Avatar
                         alt={`Avatar n°${value.sid + 1}`}
-                        src={`img/${value.song_name}.png`}
+                        src={url}
                       />
                     </ListItemAvatar>
                     <ListItemText id={labelId} primary={`${value.song_name}`} />
@@ -66,8 +81,7 @@ const playlistCard = ({pid, playlist_name, songs} : playlistType) => {
                 <ListItem disablePadding>
                   <ListItemButton>
                     <ListItemText primary="More >>" />
-                    <AddCircleIcon fontSize="small">
-                    </AddCircleIcon>
+                    <AddCircleIcon fontSize="small"></AddCircleIcon>
                   </ListItemButton>
                 </ListItem>
               </List>
