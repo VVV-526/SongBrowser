@@ -1,23 +1,21 @@
-import React from "react"
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Row, Col } from 'react-bootstrap';
+import SongItem from "./songItem"
+import { SongWithId } from "../types"
 
 type Props = {
-    id: number,
-    name: string,
-    artist: string,
-    album: string
+    readonly songs: SongWithId[]
 }
 
-const SongList = (props: Props) => {
+const SongList = ({ songs }: Props) => {
     return (
-        <Row className='mt-3 justify-content-center text-center'>
-            <Col sm={4}>{props.name}</Col>
-            <Col sm={4}>{props.artist}</Col>
-            <Col sm={4}>{props.album}</Col>
-        </Row>
+        <div>
+            {songs.length ? (
+                songs.map((song) => <SongItem key={song.id} song={song} />)
+            ) : (
+                <div>No songs found!</div>
+            )}
+        </div>
     )
 }
 
+export default SongList
 
-export default SongList;
