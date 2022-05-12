@@ -3,9 +3,8 @@ import { Card, Button, Container, Row, Col } from 'react-bootstrap';
 import { useState, useEffect } from "react"
 import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 import styles from "../../../../styles/Home.module.css";
-import { app } from "../../../firebase";
 import { useRouter } from 'next/router';
-
+import {app} from "../../../firebase"
 
 app;
 
@@ -23,9 +22,9 @@ const PreviewPage = () => {
         const ImgRef = ref(storage, `img/${album_name}.png`);
         const ImgUrl = await getDownloadURL(ImgRef);
         setUrl(ImgUrl);
-        const lyricRef = ref(storage, `lyrics/${song_name}.rtf`);
-        const lyricUrl = await getDownloadURL(lyricRef);
-        setLyric(lyricUrl);
+        // const lyricRef = ref(storage, `lyrics/${song_name}.rtf`);
+        // const lyricUrl = await getDownloadURL(lyricRef);
+        // setLyric(lyricUrl);
       }
       func();
     }
@@ -51,7 +50,7 @@ const PreviewPage = () => {
 
           <Col lg={12} xl={6} >
             <h3>{song_name}</h3>
-            {lyric}
+            {"xxx"}
           </Col>
         </Row>
       </Container>

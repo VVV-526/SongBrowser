@@ -21,7 +21,7 @@ const addplaylistCard = () =>{
 
   return (
     <div className={plstyles.topBtn}>
-      <Button variant="contained" className={plstyles.addPlaylistBtn} onClick={handleClickOpen}>
+      <Button className={plstyles.addPlBtn} variant="contained" onClick={handleClickOpen}>
         Add Playlist
       </Button>
       <Dialog open={open} onClose={handleClose}>

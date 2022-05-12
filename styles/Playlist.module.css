@@ -28,12 +28,12 @@
     margin-top:1rem;
 }
 
-.addPlaylistBtn{
+.addPlBtn{
     background-color: rgb(106, 185, 204);
     padding:1rem;
     font-weight: bold;
 }
 
-.addPlaylistBtn:hover{
+.addPlBtn:hover{
     background-color: rgb(173, 217, 228);
 }
