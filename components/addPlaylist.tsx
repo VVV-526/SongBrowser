@@ -13,7 +13,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { useAuth } from "./auth/AuthUserProvider"
 import { useState } from 'react';
 
-const addplaylistCard = () => {
+const AddplaylistCard = () => {
     const { user } = useAuth()
     const [open, setOpen] = React.useState(false);
     const playlistCollectionRef = collection(db, 'playlists');
@@ -93,4 +93,4 @@ const addplaylistCard = () => {
     );
 }
 
-export default addplaylistCard;
+export default AddplaylistCard;

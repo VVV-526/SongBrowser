@@ -36,7 +36,7 @@ type playlistWithId = playlistType & {
 };
 
 
-const playlistCard = ({ playlist_name, des, songs, id }: playlistWithId) => {
+const PlaylistCard = ({ playlist_name, des, songs, id }: playlistWithId) => {
 
   const [open, setOpen] = React.useState(false);
 
@@ -58,19 +58,6 @@ const playlistCard = ({ playlist_name, des, songs, id }: playlistWithId) => {
       songs: songs.filter(song => song.song_name !== sname)
     });
   };
-
-  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
-
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const closePopOver = () => {
-    setAnchorEl(null);
-  };
-
-  const isEdit = Boolean(anchorEl);
-  const pop = isEdit ? 'simple-popover' : undefined;
 
   return (
     <div className={styles.playlist}>
@@ -165,4 +152,4 @@ const playlistCard = ({ playlist_name, des, songs, id }: playlistWithId) => {
   )
 }
 
-export default playlistCard;
+export default PlaylistCard;
