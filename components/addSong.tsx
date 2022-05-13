@@ -131,4 +131,4 @@ const addSong = ({ id, prevSongs }: Props) => {
     );
 }
 
-export default addSong;
+export default AddSong;
