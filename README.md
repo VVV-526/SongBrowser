@@ -1,6 +1,7 @@
 ## Project Description
 This is a simple song browser web app created for music-lovers who wish to search and find songs they like and manage their own playlists.
-Implemented Function: Authentication, view/add/delete playist, add/delete/view songs in playlist, search/view songs
+
+Implemented Features: Authentication, view/add/delete playist, add/delete/view songs in playlist, search/view songs
 
 The project is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). 
 
