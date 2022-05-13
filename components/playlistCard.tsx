@@ -35,6 +35,9 @@ type playlistWithId = playlistType & {
   id: string
 };
 
+type songWithURL = songType & {
+  url:string
+}
 
 const PlaylistCard = ({ playlist_name, des, songs, id }: playlistWithId) => {
 
@@ -58,6 +61,20 @@ const PlaylistCard = ({ playlist_name, des, songs, id }: playlistWithId) => {
       songs: songs.filter(song => song.song_name !== sname)
     });
   };
+
+  // useEffect(() => {
+  //   const storage = getStorage();
+  //   const [songsAndURL, setUrl] = useState<songWithURL[]>([]);
+  //   songs.map(async (song) => {
+  //     const ImgRef = ref(storage, `img/${song.album_name}.png`);
+  //     const url = await getDownloadURL(ImgRef);
+  //     setUrl({ ...song as songType[], url: url} as songWithURL)
+  //   }
+  //   )
+
+  //   console.log(url)
+
+  // }, []);
 
   return (
     <div className={styles.playlist}>
