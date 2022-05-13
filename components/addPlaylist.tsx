@@ -11,6 +11,7 @@ import { addDoc, collection, onSnapshot, query} from "firebase/firestore";
 import { db } from '../pages/firebase';
 import AddIcon from '@mui/icons-material/Add';
 import { useAuth } from "./auth/AuthUserProvider"
+import { useState } from 'react';
 
 const addplaylistCard = () => {
     const { user } = useAuth()
@@ -20,6 +21,7 @@ const addplaylistCard = () => {
     const [title, setTitle] = React.useState("");
     const [des, setDes] = React.useState("");
     const [count, setAmount] = React.useState(0);
+    const temp = user ? user!.email : "default";
 
     onSnapshot(playlistQuery,(querySnapshot) => {
         const amount:number = querySnapshot.size;     
@@ -35,7 +37,7 @@ const addplaylistCard = () => {
     };
 
     const createPlaylist = async () => {
-        await addDoc(playlistCollectionRef, { playlist_name: title, des: des, pid: count, songs: [], owner:user!.email!});
+        await addDoc(playlistCollectionRef, { playlist_name: title, des: des, pid: count, songs: [], owner:temp});
         setOpen(false);
     }
 
