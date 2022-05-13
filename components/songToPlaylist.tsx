@@ -3,13 +3,12 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
+import InputLabel from '@mui/material/InputLabel';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 import { db } from "../pages/firebase"
-import { collection, onSnapshot, query, doc, getDoc } from "firebase/firestore"
+import { collection, onSnapshot, query, doc, updateDoc } from "firebase/firestore"
 import { useState, useEffect } from "react"
 import { PlaylistType, PlaylistWithId, SongWithSid } from "../types"
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -38,27 +37,30 @@ const SongToPlaylist = ({ album_name, song_name, artist_name }: Props) => {
         setOpen(false);
     };
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (event: SelectChangeEvent) => {
         setValue((event.target as HTMLInputElement).value);
     };
 
     // Add Songs to Playlist Database
     const handleAdd = () => {
         if (value === "") return
+        const selectedSongs = playlists.filter(playlist => playlist.id == value);
         const addedSong: SongWithSid = {
             album_name: album_name,
             song_name: song_name,
             artist_name: artist_name,
-            sid: 3,
+            sid: selectedSongs[0].songs.length,
         }
+        console.log(addedSong);
         const playlistRef = doc(db, "playlists", `${value}`);
-        const createTask = async () => {
-            const docSnap = await getDoc(playlistRef);
-            const currentSongs = docSnap.data();
-            // zheli!!
-            console.log(currentSongs);
+        const newList = selectedSongs[0].songs.push(addedSong)
+        console.log(newList)
+        const addSong = async () => {
+            //  await updateDoc(playlistRef, {
+            //     songs: newList
+            //  });
         }
-        createTask();
+        addSong();
         setOpen(false);
         setValue("");
     }
@@ -96,20 +98,21 @@ const SongToPlaylist = ({ album_name, song_name, artist_name }: Props) => {
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Choose a playlist</DialogTitle>
                 <DialogContent>
-                    <FormControl>
-                        <FormLabel id="playlist-radio-buttons-group"></FormLabel>
-                        <RadioGroup
-                            name="playlist-radio-buttons-group"
+                    <FormControl variant="standard" sx={{ m: 1, minWidth: 170 }}>
+                        <InputLabel id="playlisy-select-label">Playlist</InputLabel>
+                        <Select
+                            labelId="playlist-select-label"
+                            id="playlist-select"
                             value={value}
-                            onChange={handleChange}>
+                            label="Playlist"
+                            onChange={handleChange} >
                             {playlists.map((data) => {
                                 return (
-                                    <FormControlLabel control={<Radio />} label={data.playlist_name} key={data.id} value={data.id}></FormControlLabel>
+                                    <MenuItem key={data.id} value={data.id}>{data.playlist_name}</MenuItem>
                                 )
                             })}
-                        </RadioGroup>
+                        </Select>
                     </FormControl>
-
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Cancel</Button>

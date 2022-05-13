@@ -17,7 +17,8 @@ export type SongWithSid = {
 export type PlaylistType = {
     pid: number,
     playlist_name: string,
-    des: string
+    des: string,
+    songs: SongWithSid[]
 }
 
 export type PlaylistWithId = PlaylistType & {
