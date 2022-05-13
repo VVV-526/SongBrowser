@@ -22,7 +22,7 @@ type playlistWithId = playlistType & {
 };
 
 
-const defaultPlaylist = () => {
+const DefaultPlaylist = () => {
     const defaultPLQuery = query(
         collection(db, "playlists"),
         where("owner", "==", "default"))
@@ -49,4 +49,4 @@ const defaultPlaylist = () => {
     )
 }
 
-export default defaultPlaylist
+export default DefaultPlaylist

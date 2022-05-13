@@ -22,7 +22,7 @@ type playlistWithId = playlistType & {
 };
 
 
-const recommendation = ({ playlist_name, des, songs, id }: playlistWithId) => {
+const Recommendation = ({ playlist_name, des, songs, id }: playlistWithId) => {
     return (
         <a className={styles.card}>
             <h2>{playlist_name} &rarr;</h2>
@@ -58,4 +58,4 @@ const recommendation = ({ playlist_name, des, songs, id }: playlistWithId) => {
         </a>)
 }
 
-export default recommendation
+export default Recommendation

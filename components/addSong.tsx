@@ -23,7 +23,7 @@ type songType = {
 
 const songRef = collection(db, "songs");
 
-const addSong = (id: string, prevSongs: songType[]) => {
+const AddSong = (id: string, prevSongs: songType[]) => {
     const [songs, setSongs] = React.useState<SonglistType[]>([])
     const defaultProps = {
         options: songs,
@@ -121,4 +121,4 @@ const addSong = (id: string, prevSongs: songType[]) => {
     );
 }
 
-export default addSong;
+export default AddSong;
