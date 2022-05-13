@@ -3,7 +3,8 @@ import React, { ReactNode } from "react"
 import Layout from "../components/layout"
 import styles from "../styles/Home.module.css"
 import Search from "../components/search"
-
+import { Avatar, ListItem, ListItemAvatar, ListItemButton, ListItemText } from "@mui/material";
+import FavoriteIcon from '@mui/icons-material/Favorite';
 const HomePage = () => {
   const router = useRouter();
   return (
@@ -12,7 +13,18 @@ const HomePage = () => {
       <div className={styles.grid}>
         <a href="/" className={styles.card}>
           <h2>New Releases &rarr;</h2>
-          <p>This is a paragraph to be filled in the future.</p>
+          <ListItem
+                key={1}>
+                <ListItemButton>
+                  <ListItemAvatar>
+                    <Avatar
+                      alt={`Avatar n°$1q}`}
+                      src={""}
+                    />
+                  </ListItemAvatar>
+                <p>Old Town Road</p>
+                </ListItemButton>
+              </ListItem>
         </a>
 
         <a href="/" className={styles.card}>
