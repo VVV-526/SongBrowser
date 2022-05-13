@@ -61,12 +61,14 @@ const addSong = (id: string, prevSongs: songType[]) => {
                 song_name: value.song_name,
                 album_name: value.album_name,
                 artist_name: value.artist_name,
-                sid: 4
+                sid: songs.length
 
             }
-            prevSongs.push(songwithId);
+            console.log(typeof (prevSongs))
+            //const newSonglist = prevSongs.slice().push(songwithId);
+            // console.log(newSonglist)
         }
-        await addDoc(playlistCollectionRef, { playlist_name: title, des: des, pid: count, songs: [] });
+        //await addDoc(playlistCollectionRef, { playlist_name: title, des: des, pid: count, songs: [] });
         setOpen(false);
     }
 
