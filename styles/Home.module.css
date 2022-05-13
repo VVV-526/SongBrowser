@@ -184,7 +184,7 @@
   border: 1px solid #ebebeb;
   border-radius: 5px;
   transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 30%;
+  min-width: 25%;
   height: 30vh;
   color: #5a5a5a;
 }

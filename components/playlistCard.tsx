@@ -15,7 +15,6 @@ import { collection, deleteDoc, deleteField, doc, onSnapshot, query, updateDoc }
 import { db } from '../pages/firebase';
 import CloseIcon from '@mui/icons-material/Close';
 import Alert from '@mui/material/Alert';
-import EditIcon from '@mui/icons-material/Edit';
 import AddSong from "./addSong"
 
 type playlistType = {
