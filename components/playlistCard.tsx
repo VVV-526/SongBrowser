@@ -78,7 +78,7 @@ const playlistCard = ({ playlist_name, des, songs, id }: playlistWithId) => {
         <CardContent sx={{ flex: '1 0 auto' }}>
           <Typography contentEditable={true} component="div" variant="h5">
             {playlist_name}
-             {/* <EditIcon className={plstyles.editTitle} fontSize="small" onClick={()=>handleClick}></EditIcon> */}
+            {/* <EditIcon className={plstyles.editTitle} fontSize="small" onClick={()=>handleClick}></EditIcon> */}
           </Typography>
           {/* <Popover
             id={pop}
@@ -155,7 +155,7 @@ const playlistCard = ({ playlist_name, des, songs, id }: playlistWithId) => {
               <ListItem disablePadding>
                 <ExpandMoreIcon></ExpandMoreIcon>
                 <ListItemText primary="More" />
-                <AddSong></AddSong>
+                <AddSong {...id}></AddSong>
               </ListItem>
             </List>
           </nav>
