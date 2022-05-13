@@ -142,7 +142,7 @@ const PlaylistCard = ({ playlist_name, des, songs, id }: playlistWithId) => {
               <ListItem disablePadding>
                 <ExpandMoreIcon></ExpandMoreIcon>
                 <ListItemText primary="More" />
-                <AddSong {...id}></AddSong>
+                <AddSong id={id} prevSongs={songs}></AddSong>
               </ListItem>
             </List>
           </nav>
