@@ -8,15 +8,13 @@ import InputLabel from '@mui/material/InputLabel';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { db } from "../pages/firebase"
-import { collection, onSnapshot, query, doc, updateDoc } from "firebase/firestore"
+import { collection, onSnapshot, query, doc, updateDoc, where } from "firebase/firestore"
 import { useState, useEffect } from "react"
 import { PlaylistType, PlaylistWithId, SongWithSid } from "../types"
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-
-
-const playlistCollectionRef = collection(db, 'playlists');
-const playlistQuery = query(playlistCollectionRef);
+import { useAuth } from "../components/auth/AuthUserProvider"
+import SelectorWithUser from "../components/selectorWithUser"
 
 type Props = {
     readonly album_name: string | string[] | undefined,
@@ -28,6 +26,10 @@ const SongToPlaylist = ({ album_name, song_name, artist_name }: Props) => {
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState("");
     const [playlists, setPlaylists] = useState<PlaylistWithId[]>([]);
+    const { user } = useAuth()
+    const playlistQuery = query(
+        collection(db, 'playlists'),
+        where("owner", "==", "default"))
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -98,18 +100,20 @@ const SongToPlaylist = ({ album_name, song_name, artist_name }: Props) => {
                 <DialogContent>
                     <FormControl variant="standard" sx={{ m: 1, minWidth: 170 }}>
                         <InputLabel id="playlisy-select-label">Playlist</InputLabel>
-                        <Select
-                            labelId="playlist-select-label"
-                            id="playlist-select"
-                            value={value}
-                            label="Playlist"
-                            onChange={handleChange} >
-                            {playlists.map((data) => {
-                                return (
-                                    <MenuItem key={data.id} value={data.id}>{data.playlist_name}</MenuItem>
-                                )
-                            })}
-                        </Select>
+                       {user ? 
+                        <SelectorWithUser></SelectorWithUser>
+                        : <Select
+                        labelId="playlist-select-label"
+                        id="playlist-select"
+                        value={value}
+                        label="Playlist"
+                        onChange={handleChange} >
+                        {playlists.map((data) => {
+                            return (
+                                <MenuItem key={data.id} value={data.id}>{data.playlist_name}</MenuItem>
+                            )
+                        })}
+                    </Select>}
                     </FormControl>
                 </DialogContent>
                 <DialogActions>

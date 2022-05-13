@@ -9,6 +9,8 @@ import { useAuth } from "../components/auth/AuthUserProvider"
 import { signInWithGoogle } from "./firebase"
 import { CircularProgress } from "@mui/material"
 import plstyles from "../styles/Playlist.module.css"
+import PlaylistWithUser from "../components/playlistWithUser"
+import DefaultPlaylist from "../components/defaultPlaylist"
 
 type playlistType = {
   playlist_name: string,
@@ -31,22 +33,6 @@ type playlistWithId = playlistType & {
 
 const Playlist = () => {
   const { user, loading } = useAuth()
-  
-  const playlistQuery = query(
-    collection(db, "playlists"),
-    where("owner", "==", user!.email!))
-
-  const [playlists, setPlaylists] = useState<playlistWithId[]>([])
-
-  useEffect(() => {
-    const unsubscribe = onSnapshot(playlistQuery, (querySnapshot) => {
-      const plData: playlistWithId[] = querySnapshot.docs.map((doc) => ({ ...doc.data() as playlistType, id: doc.id } as playlistWithId));
-      setPlaylists(plData)
-    })
-    return unsubscribe
-  }, [])
-
-  //console.log(playlists.length);
 
   return (
     <Layout title="Playlist">
@@ -54,15 +40,12 @@ const Playlist = () => {
         {loading ? (
           <CircularProgress />
         ) : user ? (
-          playlists ?
-            (playlists.map((data) => {
-              return (
-                <PlaylistCard key={data.id} {...data}></PlaylistCard>
-              )
-            })) : <CircularProgress />
-        ) : (
+          <PlaylistWithUser></PlaylistWithUser>
+        )
+         : (
           <div>
             <h4 className={plstyles.reminder}>Sign in to view your saved playlists!</h4>
+            <DefaultPlaylist></DefaultPlaylist>
           </div>
         )}
       </div>
