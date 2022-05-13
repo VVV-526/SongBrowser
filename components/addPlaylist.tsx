@@ -7,12 +7,13 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import plstyles from "../styles/Playlist.module.css"
-import { addDoc, collection, doc, onSnapshot, query, setDoc } from "firebase/firestore";
+import { addDoc, collection, onSnapshot, query} from "firebase/firestore";
 import { db } from '../pages/firebase';
 import AddIcon from '@mui/icons-material/Add';
-
+import { useAuth } from "./auth/AuthUserProvider"
 
 const addplaylistCard = () => {
+    const { user } = useAuth()
     const [open, setOpen] = React.useState(false);
     const playlistCollectionRef = collection(db, 'playlists');
     const playlistQuery = query(playlistCollectionRef);
@@ -34,7 +35,7 @@ const addplaylistCard = () => {
     };
 
     const createPlaylist = async () => {
-        await addDoc(playlistCollectionRef, { playlist_name: title, des: des, pid: count, songs: [] });
+        await addDoc(playlistCollectionRef, { playlist_name: title, des: des, pid: count, songs: [], owner:user!.email!});
         setOpen(false);
     }
 

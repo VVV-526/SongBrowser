@@ -116,8 +116,8 @@
   color: rgb(255, 255, 255);
   background: linear-gradient(to right,
       rgb(56, 143, 164) 50%,
-      #f4f4f4 50%,
-      #fcfcfc);
+      rgb(247, 247, 247)50%,
+      #fafafa);
   background-clip: border-box;
   background-size: 200%;
   font-size: 16px;
@@ -125,20 +125,19 @@
   overflow: hidden;
   height: 5vh;
   width: 6vw;
-  margin-right: 1%;
+  margin-right: 0%;
   border: 0;
   text-align: center;
   cursor: pointer;
   font-weight: bold;
-  box-shadow: 1px 1px 1px #afafaf;
 }
 
 .loginBtn:hover {
   color: rgb(148, 148, 148);
   transition: all 0.3s;
   font-weight: bold;
-  letter-spacing: 0.05rem;
   background-position: -100%;
+  padding: .45rem 0.35rem;
 }
 
 .content {
