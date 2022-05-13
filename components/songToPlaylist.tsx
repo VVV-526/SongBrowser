@@ -14,7 +14,6 @@ import { PlaylistType, PlaylistWithId, SongWithSid } from "../types"
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import { useAuth } from "../components/auth/AuthUserProvider"
-import SelectorWithUser from "../components/selectorWithUser"
 
 type Props = {
     readonly album_name: string | string[] | undefined,
@@ -27,9 +26,11 @@ const SongToPlaylist = ({ album_name, song_name, artist_name }: Props) => {
     const [value, setValue] = useState("");
     const [playlists, setPlaylists] = useState<PlaylistWithId[]>([]);
     const { user } = useAuth()
+    const temp = user ? user!.email! : "default"
+
     const playlistQuery = query(
         collection(db, 'playlists'),
-        where("owner", "==", "default"))
+        where("owner", "==", temp))
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -101,20 +102,18 @@ const SongToPlaylist = ({ album_name, song_name, artist_name }: Props) => {
                 <DialogContent>
                     <FormControl variant="standard" sx={{ m: 1, minWidth: 170 }}>
                         <InputLabel id="playlisy-select-label">Playlist</InputLabel>
-                        {user ?
-                            <SelectorWithUser></SelectorWithUser>
-                            : <Select
-                                labelId="playlist-select-label"
-                                id="playlist-select"
-                                value={value}
-                                label="Playlist"
-                                onChange={handleChange} >
-                                {playlists.map((data) => {
-                                    return (
-                                        <MenuItem key={data.id} value={data.id}>{data.playlist_name}</MenuItem>
-                                    )
-                                })}
-                            </Select>}
+                        <Select
+                            labelId="playlist-select-label"
+                            id="playlist-select"
+                            value={value}
+                            label="Playlist"
+                            onChange={handleChange} >
+                            {playlists.map((data) => {
+                                return (
+                                    <MenuItem key={data.id} value={data.id}>{data.playlist_name}</MenuItem>
+                                )
+                            })}
+                        </Select>
                     </FormControl>
                 </DialogContent>
                 <DialogActions>

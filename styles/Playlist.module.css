@@ -89,4 +89,7 @@
 .reminder{
     color:rgb(97, 97, 97);
     margin-top:1rem;
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
