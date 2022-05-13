@@ -27,7 +27,7 @@ type Props = {
 
 const songRef = collection(db, "songs");
 
-const addSong = ({ id, prevSongs }: Props) => {
+const AddSong = ({ id, prevSongs }: Props) => {
     const [songs, setSongs] = React.useState<SonglistType[]>([])
     const defaultProps = {
         options: songs,
