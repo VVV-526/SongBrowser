@@ -56,7 +56,16 @@ const addSong = (id: string, prevSongs: songType[]) => {
     const addToPlaylist = async () => {
         console.log(value)
         const playlistRef = doc(db, "playlists", `${id}`);
-        // if (value) {prevSongs.push(value);}
+        if (value) {
+            const songwithId: songType = {
+                song_name: value.song_name,
+                album_name: value.album_name,
+                artist_name: value.artist_name,
+                sid: 4
+
+            }
+            prevSongs.push(songwithId);
+        }
         await addDoc(playlistCollectionRef, { playlist_name: title, des: des, pid: count, songs: [] });
         setOpen(false);
     }
