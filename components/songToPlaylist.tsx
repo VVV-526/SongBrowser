@@ -27,7 +27,7 @@ type Props = {
 const SongToPlaylist = ({ album_name, song_name, artist_name }: Props) => {
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState("");
-    const [playlists, setPlaylists] = useState<PlaylistWithId[]>([]);;
+    const [playlists, setPlaylists] = useState<PlaylistWithId[]>([]);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -51,14 +51,12 @@ const SongToPlaylist = ({ album_name, song_name, artist_name }: Props) => {
             artist_name: artist_name,
             sid: selectedSongs[0].songs.length,
         }
-        console.log(addedSong);
         const playlistRef = doc(db, "playlists", `${value}`);
-        const newList = selectedSongs[0].songs.push(addedSong)
-        console.log(newList)
+        selectedSongs[0].songs.push(addedSong)
         const addSong = async () => {
-            //  await updateDoc(playlistRef, {
-            //     songs: newList
-            //  });
+            await updateDoc(playlistRef, {
+                songs: selectedSongs[0].songs
+            });
         }
         addSong();
         setOpen(false);
