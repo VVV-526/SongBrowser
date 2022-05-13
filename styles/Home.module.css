@@ -187,6 +187,7 @@
   min-width: 25%;
   height: 30vh;
   color: #5a5a5a;
+  cursor:pointer;
 }
 
 .card:hover,

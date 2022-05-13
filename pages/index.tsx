@@ -55,7 +55,7 @@ const HomePage = () => {
             )
           })}
 
-        <a href="/" className={styles.card}>
+        <a className={styles.card}>
           <h2>Find More Lists&rarr;</h2>
           <p>More songs coming!</p>
         </a>
