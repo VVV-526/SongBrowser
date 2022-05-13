@@ -19,6 +19,7 @@ The project is a [Next.js](https://nextjs.org/) project bootstrapped with [`crea
 
 ## Deployment Link
 []
+Failed to deploy because of a small bug when acquiring image url in the program:( will fix it soon!
 
 ## Getting Started
 Pull the project and run 
