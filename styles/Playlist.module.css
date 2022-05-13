@@ -85,3 +85,8 @@
     transition: 0.3s;
     background-color: rgb(232, 232, 232);
 }
+
+.reminder{
+    color:rgb(97, 97, 97);
+    margin-top:1rem;
+}

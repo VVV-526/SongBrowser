@@ -3,8 +3,6 @@ import { Row, Col, Form, Button } from 'react-bootstrap';
 import { useRouter } from "next/router";
 import { useState, ChangeEvent } from 'react';
 import styles from "../styles/Home.module.css"
-
-
 const Search = () => {
     const router = useRouter();
     const [input, setInput] = useState('');

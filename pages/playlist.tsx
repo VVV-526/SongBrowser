@@ -1,20 +1,20 @@
 import React, { ReactNode, useEffect, useState } from "react"
 import Layout from "../components/layout"
 import styles from "../styles/Home.module.css"
-import { List, ListItem, ListItemButton, ListItemAvatar, ListItemText, Avatar, ListSubheader, Divider, Card, CardContent, Typography } from "@mui/material"
-import AddBoxIcon from '@mui/icons-material/AddBox';
 import PlaylistCard from "../components/playlistCard"
 import AddPlaylistButton from "../components/addPlaylist"
-import { collection, getDocs, onSnapshot, query } from "firebase/firestore"
+import { collection, onSnapshot, query, where } from "firebase/firestore"
 import { db } from "./firebase"
-import CloseIcon from '@mui/icons-material/Close';
+import { useAuth } from "../components/auth/AuthUserProvider"
+import { signInWithGoogle } from "./firebase"
+import { CircularProgress } from "@mui/material"
 import plstyles from "../styles/Playlist.module.css"
-import { Add } from "@mui/icons-material";
 
 type playlistType = {
   playlist_name: string,
   songs: songType[],
-  des: string
+  des: string,
+  owner:string
 }
 
 type songType = {
@@ -28,16 +28,20 @@ type playlistWithId = playlistType & {
   id: string
 };
 
-const playlistCollectionRef = collection(db, 'playlists');
-const playlistQuery = query(playlistCollectionRef);
 
 const Playlist = () => {
-  console.log(playlistQuery);
-  const [playlists, setTasks] = useState<playlistWithId[]>([]);
+  const { user, loading } = useAuth()
+  
+  const playlistQuery = query(
+    collection(db, "playlists"),
+    where("owner", "==", user!.email!))
+
+  const [playlists, setPlaylists] = useState<playlistWithId[]>([])
+
   useEffect(() => {
     const unsubscribe = onSnapshot(playlistQuery, (querySnapshot) => {
-      const plData: playlistWithId[] = querySnapshot.docs.map((doc) => ({ ...doc.data() as playlistType, id: doc.id} as playlistWithId));
-      setTasks(plData);
+      const plData: playlistWithId[] = querySnapshot.docs.map((doc) => ({ ...doc.data() as playlistType, id: doc.id } as playlistWithId));
+      setPlaylists(plData)
     })
     return unsubscribe
   }, [])
@@ -47,11 +51,20 @@ const Playlist = () => {
   return (
     <Layout title="Playlist">
       <div className={styles.grid}>
-        {playlists.map((data) => {
-          return (
-            <PlaylistCard key={data.id} {...data}></PlaylistCard>
-          )
-        })}
+        {loading ? (
+          <CircularProgress />
+        ) : user ? (
+          playlists ?
+            (playlists.map((data) => {
+              return (
+                <PlaylistCard key={data.id} {...data}></PlaylistCard>
+              )
+            })) : <CircularProgress />
+        ) : (
+          <div>
+            <h4 className={plstyles.reminder}>Sign in to view your saved playlists!</h4>
+          </div>
+        )}
       </div>
       <AddPlaylistButton></AddPlaylistButton>
     </Layout>

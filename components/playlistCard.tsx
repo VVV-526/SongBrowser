@@ -20,8 +20,9 @@ import AddSong from "./addSong"
 
 type playlistType = {
   playlist_name: string,
-  songs: songType[]
-  des: string
+  songs: songType[],
+  des: string,
+  owner: string
 }
 
 type songType = {
