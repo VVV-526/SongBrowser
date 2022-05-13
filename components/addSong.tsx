@@ -78,7 +78,6 @@ const AddSong = ({ id, prevSongs }: Props) => {
             }
             addSong();
         }
-        //await addDoc(playlistCollectionRef, { playlist_name: title, des: des, pid: count, songs: [] });
         setOpen(false);
     }
 
