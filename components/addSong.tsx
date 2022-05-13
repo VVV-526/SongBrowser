@@ -10,9 +10,9 @@ import plstyles from "../styles/Playlist.module.css"
 import { addDoc, collection, doc, onSnapshot, query, setDoc } from "firebase/firestore";
 import { db } from '../pages/firebase';
 import AddIcon from '@mui/icons-material/Add';
+import Search from "../components/search"
 
-
-const addplaylistCard = () => {
+const addSong = () => {
     const [open, setOpen] = React.useState(false);
     const playlistCollectionRef = collection(db, 'playlists');
     const playlistQuery = query(playlistCollectionRef);
@@ -33,61 +33,31 @@ const addplaylistCard = () => {
         setOpen(false);
     };
 
-    const createPlaylist = async () => {
+    const addToPlaylist = async () => {
         await addDoc(playlistCollectionRef, { playlist_name: title, des: des, pid: count, songs: [] });
         setOpen(false);
     }
 
-    const changeTitle = (event: { target: { value: React.SetStateAction<string>; }; }) => {
-        setTitle(event.target.value);
-      };
-
-    const changeDes = (event: { target: { value: React.SetStateAction<string>; }; }) => {
-        setDes(event.target.value);
-      };
-
     return (
-        <div className={plstyles.topBtn}>
-            <button className={plstyles.addPlBtn} onClick={handleClickOpen}>
-                <AddIcon></AddIcon>
-                Add Playlist
-            </button>
+        <div className={plstyles.addBtn}>
+            <button className={plstyles.innerBtn} onClick={handleClickOpen} >
+                  Add
+                </button>
             <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Create your playlist!</DialogTitle>
+                <DialogTitle>Add to playlist</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        Enter your new playlist title and description.
+                        Input keywords to find new songs.
                     </DialogContentText>
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="name"
-                        label="Title"
-                        type="title"
-                        value={title}
-                        onChange={changeTitle}
-                        fullWidth
-                        variant="standard"
-                    />
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="name"
-                        label="Description"
-                        type="description"
-                        value={des}
-                        onChange={changeDes}
-                        fullWidth
-                        variant="standard"
-                    />
+                    <Search></Search>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Cancel</Button>
-                    <Button disabled={title=== ""} onClick={createPlaylist}>Create</Button>
+                    <Button disabled={title=== ""} onClick={addToPlaylist}>Add</Button>
                 </DialogActions>
             </Dialog>
         </div>
     );
 }
 
-export default addplaylistCard;
+export default addSong;

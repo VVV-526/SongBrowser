@@ -13,12 +13,18 @@
     position:sticky;
 }
 
-.closebutton {
+.closeBtn {
     background-color:rgb(70, 70, 70);
     position: sticky;
     width: 1.5rem;
     left: 100%;
     color:white;
+    cursor: pointer;
+}
+
+.closeBtn:hover {
+    background-color:rgb(124, 124, 124);
+    transition:.2s;
 }
 
 .topBtn{
@@ -31,9 +37,51 @@
 .addPlBtn{
     background-color: rgb(106, 185, 204);
     padding:1rem;
+    border:0;
     font-weight: bold;
+    color:white;
+    transition: 0.3s;
 }
 
 .addPlBtn:hover{
-    background-color: rgb(173, 217, 228);
+    transition: 0.3s;
+    background-color: rgb(154, 227, 245);
+}
+
+.addBtn{
+    border:0.1rem #e2e2e2;
+    width:20%;
+    padding:0.5rem;
+    color: rgb(70, 70, 70);
+}
+
+.addBtn:hover{
+    width:25%;
+    transition:0.2s;
+    color: rgb(33, 33, 33);
+    background-color: #eceaea;
+}
+
+.innerBtn{
+    border:0;
+    background-color: inherit;
+}
+
+
+.delSongBtn{
+    cursor: pointer;
+}
+
+.delSongBtn:hover{
+    transition: 0.3s;
+    background-color: rgb(232, 232, 232);
+}
+
+.editTitle{
+    cursor: pointer;
+}
+
+.editTitle:hover{
+    transition: 0.3s;
+    background-color: rgb(232, 232, 232);
 }
