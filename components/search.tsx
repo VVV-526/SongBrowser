@@ -2,9 +2,7 @@ import React from "react"
 import { Row, Form, Col, Button } from 'react-bootstrap';
 import { useRouter } from "next/router";
 import { useState, ChangeEvent } from 'react';
-import searchButton from "./searchButton"
-import SearchButton from "./searchButton";
-
+import styles from "../styles/Home.module.css"
 const Search = () => {
     const router = useRouter();
     const [input, setInput] = useState('');
@@ -29,7 +27,9 @@ const Search = () => {
                         Please enter a fullname. E.g. Taylor Swift
                     </Form.Control.Feedback>
                 </Col>
-                <SearchButton input={input} validated={validated}></SearchButton>
+                <Col xs="auto" className="my-1">
+                    <Button variant="secondary" className={styles.searchButton} onClick={() => router.push(`/filterlist/${input}`)} disabled={!validated} >Search</Button>
+                </Col>
             </Row>
         </Form>
     )
