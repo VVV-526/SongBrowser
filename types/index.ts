@@ -24,3 +24,12 @@ export type PlaylistType = {
 export type PlaylistWithId = PlaylistType & {
     id: string
 }
+
+
+export type SongType = {
+    sid: number,
+    song_name: string,
+    album_name: string,
+    artist_name: string
+  }
+  

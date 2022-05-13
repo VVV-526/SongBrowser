@@ -5,7 +5,6 @@ import { db } from "../pages/firebase"
 import { useAuth } from "../components/auth/AuthUserProvider"
 import { CircularProgress } from "@mui/material"
 
-
 type playlistType = {
     playlist_name: string,
     songs: songType[],

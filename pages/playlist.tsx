@@ -12,24 +12,6 @@ import plstyles from "../styles/Playlist.module.css"
 import PlaylistWithUser from "../components/playlistWithUser"
 import DefaultPlaylist from "../components/defaultPlaylist"
 
-type playlistType = {
-  playlist_name: string,
-  songs: songType[],
-  des: string,
-  owner:string
-}
-
-type songType = {
-  sid: number,
-  song_name: string,
-  album_name: string,
-  artist_name: string
-}
-
-type playlistWithId = playlistType & {
-  id: string
-};
-
 
 const Playlist = () => {
   const { user, loading } = useAuth()
