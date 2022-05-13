@@ -56,8 +56,19 @@ const addSong = (id: string, prevSongs: songType[]) => {
     const addToPlaylist = async () => {
         console.log(value)
         const playlistRef = doc(db, "playlists", `${id}`);
-        // if (value) {prevSongs.push(value);}
-        await addDoc(playlistCollectionRef, { playlist_name: title, des: des, pid: count, songs: [] });
+        if (value) {
+            const songwithId: songType = {
+                song_name: value.song_name,
+                album_name: value.album_name,
+                artist_name: value.artist_name,
+                sid: songs.length
+
+            }
+            console.log(typeof (prevSongs))
+            //const newSonglist = prevSongs.slice().push(songwithId);
+            // console.log(newSonglist)
+        }
+        //await addDoc(playlistCollectionRef, { playlist_name: title, des: des, pid: count, songs: [] });
         setOpen(false);
     }
 

@@ -56,6 +56,7 @@ const SongToPlaylist = ({ album_name, song_name, artist_name }: Props) => {
         }
         const playlistRef = doc(db, "playlists", `${value}`);
         selectedSongs[0].songs.push(addedSong)
+        console.log(selectedSongs[0].songs)
         const addSong = async () => {
             await updateDoc(playlistRef, {
                 songs: selectedSongs[0].songs
@@ -101,6 +102,7 @@ const SongToPlaylist = ({ album_name, song_name, artist_name }: Props) => {
                 <DialogContent>
                     <FormControl variant="standard" sx={{ m: 1, minWidth: 170 }}>
                         <InputLabel id="playlisy-select-label">Playlist</InputLabel>
+
                         <Select
                         labelId="playlist-select-label"
                         id="playlist-select"
