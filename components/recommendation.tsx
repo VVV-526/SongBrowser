@@ -24,7 +24,7 @@ type playlistWithId = playlistType & {
 
 const recommendation = ({ playlist_name, des, songs, id }: playlistWithId) => {
     return (
-        <a href="/" className={styles.card}>
+        <a className={styles.card}>
             <h2>{playlist_name} &rarr;</h2>
             {songs.map((value) => {
                 const labelId = `checkbox-list-secondary-label-${value.sid}`;
