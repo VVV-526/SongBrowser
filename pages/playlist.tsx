@@ -12,11 +12,9 @@ import plstyles from "../styles/Playlist.module.css"
 import { Add } from "@mui/icons-material";
 
 type playlistType = {
-  pid: number,
   playlist_name: string,
-  songs: songType[]
+  songs: songType[],
   des: string
-
 }
 
 type songType = {
@@ -26,29 +24,32 @@ type songType = {
   artist_name: string
 }
 
+type playlistWithId = playlistType & {
+  id: string
+};
 
 const playlistCollectionRef = collection(db, 'playlists');
 const playlistQuery = query(playlistCollectionRef);
 
 const Playlist = () => {
   console.log(playlistQuery);
-  const [playlists, setTasks] = useState<playlistType[]>([]);
+  const [playlists, setTasks] = useState<playlistWithId[]>([]);
   useEffect(() => {
     const unsubscribe = onSnapshot(playlistQuery, (querySnapshot) => {
-      const plData: playlistType[] = querySnapshot.docs.map((doc) => ({ ...doc.data() } as playlistType));
+      const plData: playlistWithId[] = querySnapshot.docs.map((doc) => ({ ...doc.data() as playlistType, id: doc.id} as playlistWithId));
       setTasks(plData);
     })
     return unsubscribe
   }, [])
 
-  console.log(playlists);
+  //console.log(playlists.length);
 
   return (
     <Layout title="Playlist">
       <div className={styles.grid}>
         {playlists.map((data) => {
           return (
-            <PlaylistCard key={data.pid} {...data}></PlaylistCard>
+            <PlaylistCard key={data.id} {...data}></PlaylistCard>
           )
         })}
       </div>
