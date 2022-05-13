@@ -8,10 +8,9 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import plstyles from "../styles/Playlist.module.css"
-import { addDoc, collection, doc, onSnapshot, query, setDoc } from "firebase/firestore";
+import { addDoc, collection, doc, onSnapshot, query, updateDoc } from "firebase/firestore";
 import { db } from '../pages/firebase';
-import AddIcon from '@mui/icons-material/Add';
-import Search from "../components/search"
+import AddIcon from '@mui/icons-material/Add'
 import { SonglistType } from '../types';
 
 type songType = {
@@ -21,9 +20,14 @@ type songType = {
     artist_name: string
 }
 
+type Props = {
+    id: string,
+    prevSongs: songType[],
+}
+
 const songRef = collection(db, "songs");
 
-const AddSong = (id: string, prevSongs: songType[]) => {
+const addSong = ({ id, prevSongs }: Props) => {
     const [songs, setSongs] = React.useState<SonglistType[]>([])
     const defaultProps = {
         options: songs,
@@ -61,12 +65,18 @@ const AddSong = (id: string, prevSongs: songType[]) => {
                 song_name: value.song_name,
                 album_name: value.album_name,
                 artist_name: value.artist_name,
-                sid: songs.length
+                sid: prevSongs.length
 
             }
-            console.log(typeof (prevSongs))
-            //const newSonglist = prevSongs.slice().push(songwithId);
-            // console.log(newSonglist)
+            const newSong = prevSongs.slice();
+            newSong.push(songwithId);
+            console.log(newSong)
+            const addSong = async () => {
+                await updateDoc(playlistRef, {
+                    songs: newSong
+                });
+            }
+            addSong();
         }
         //await addDoc(playlistCollectionRef, { playlist_name: title, des: des, pid: count, songs: [] });
         setOpen(false);
