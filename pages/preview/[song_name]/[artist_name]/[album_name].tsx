@@ -1,10 +1,11 @@
 import Layout from "../../../../components/layout"
-import { Card, Button, Container, Row, Col } from 'react-bootstrap';
+import { Card, Container, Row, Col } from 'react-bootstrap';
 import { useState, useEffect } from "react"
 import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 import styles from "../../../../styles/Home.module.css";
 import { useRouter } from 'next/router';
-import {app} from "../../../firebase"
+import { app } from "../../../firebase"
+import SongToPlaylist from "../../../../components/songToPlaylist";
 
 app;
 
@@ -13,7 +14,6 @@ const PreviewPage = () => {
   const [lyric, setLyric] = useState("");
   const router = useRouter()
   const { song_name, artist_name, album_name } = router.query;
-  console.log(album_name)
 
   useEffect(() => {
     if (router.isReady) {
@@ -22,9 +22,9 @@ const PreviewPage = () => {
         const ImgRef = ref(storage, `img/${album_name}.png`);
         const ImgUrl = await getDownloadURL(ImgRef);
         setUrl(ImgUrl);
-        // const lyricRef = ref(storage, `lyrics/${song_name}.rtf`);
-        // const lyricUrl = await getDownloadURL(lyricRef);
-        // setLyric(lyricUrl);
+        // const lyricRef = ref(storage, `lyrics/${song_name}.txt`);
+        // const lyricURL = await getDownloadURL(lyricRef)
+        setLyric('lyrics');
       }
       func();
     }
@@ -43,14 +43,13 @@ const PreviewPage = () => {
                 <Card.Text>
                   {artist_name}
                 </Card.Text>
-                <Button variant="secondary" className={styles.searchButton} size="sm">Add to playlist</Button>
+                <SongToPlaylist album_name={album_name} song_name={song_name} artist_name={artist_name} />
               </Card.Body>
             </Card>
           </Col>
-
           <Col lg={12} xl={6} >
             <h3>{song_name}</h3>
-            {"xxx"}
+            {lyric}
           </Col>
         </Row>
       </Container>
