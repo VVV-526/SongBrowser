@@ -1,8 +1,9 @@
 import React, { useState } from "react"
-import NextLink from "next/link"
 import { useRouter } from "next/router"
 import styles from '../styles/Home.module.css'
 import Link from "next/link"
+import { signInWithGoogle } from "../pages/firebase"
+import { useAuth } from "./auth/AuthUserProvider"
 
 type NavLinkData = {
   id: number
@@ -40,6 +41,7 @@ const NavLink = ({ id, name, path }: NavLinkData) => {
 
 
 const Navbar = () => {
+  const { user, signOut } = useAuth()
   return (
     <div className={styles.navbar}>
       <div className={styles.logo}>
@@ -51,8 +53,7 @@ const Navbar = () => {
         })}
       </div>
       <div className={styles.authen}>
-        <a href="#" className={styles.signText}>Sign up</a>
-        <button className={styles.loginBtn}>Log in</button>
+        <button className={styles.loginBtn} onClick={user ? signOut : signInWithGoogle}>{user ? "Log Out" : "Log In"}</button>
       </div>
     </div>
   )

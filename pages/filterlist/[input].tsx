@@ -22,7 +22,9 @@ const FilterPage = () => {
         (doc) => ({ ...doc.data() as SonglistType, id: doc.id } as SongWithId)
       )
       if (input) {
-        setSongs(songData.filter(song => song.artist_name === input || song.song_name === input || song.album_name === input));
+        const test = input.toString();
+          setSongs(songData.filter(song => song.artist_name.toLowerCase().includes(test.toLowerCase()) || song.song_name.toLowerCase().includes(test.toLowerCase())
+           || song.album_name.toLowerCase().includes(test.toLowerCase())));
       }
     })
     return unsubscribe;
