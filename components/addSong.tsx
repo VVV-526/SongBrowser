@@ -9,8 +9,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 import plstyles from "../styles/Playlist.module.css"
 import { addDoc, collection, doc, onSnapshot, query, setDoc } from "firebase/firestore";
 import { db } from '../pages/firebase';
-import AddIcon from '@mui/icons-material/Add';
-import Search from "../components/search"
+
+
 
 const addSong = () => {
     const [open, setOpen] = React.useState(false);
